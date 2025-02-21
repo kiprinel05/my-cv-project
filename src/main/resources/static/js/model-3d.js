@@ -1,14 +1,25 @@
 document.addEventListener("DOMContentLoaded", function () {
-
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
     renderer.setClearColor(0x000000, 0);
 
     const container = document.getElementById("model-container");
-    renderer.setSize(container.clientWidth, container.clientHeight);
+
+    function resizeRenderer() {
+        const width = container.clientWidth;
+        const height = container.clientHeight;
+        renderer.setSize(width, height);
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+    }
+
+    resizeRenderer();
+    window.addEventListener("resize", resizeRenderer);
+
     container.appendChild(renderer.domElement);
 
+    // Lumini
     const ambientLight = new THREE.AmbientLight(0xffffff, 1.5);
     scene.add(ambientLight);
 
@@ -27,7 +38,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let targetRotation = { x: 0, y: .3 };
     let initialRotation = { x: 0, y: Math.PI / 2 };
     let lerpSpeed = 0.02;
-    let returnSpeed = 0.015;
 
     scene.background = null;
 
@@ -36,9 +46,22 @@ document.addEventListener("DOMContentLoaded", function () {
         model = gltf.scene;
         scene.add(model);
 
-        model.scale.set(1.2, 1.2, 1.2);
-        model.position.set(0, 0, 0);
+        // Scalare automată a modelului
+        const box = new THREE.Box3().setFromObject(model);
+        const size = box.getSize(new THREE.Vector3()).length();
+        const scaleFactor = (3 / size) * 2.7; // Ajustează factorul dacă modelul e prea mare/mic
+        model.scale.set(scaleFactor, scaleFactor, scaleFactor);
+
+        // Poziționează modelul corect
+        const center = box.getCenter(new THREE.Vector3());
+        model.position.sub(center); // Așează modelul astfel încât centrul să fie la (0,0,0)
+
+        // Poziționarea inițială a modelului
         model.rotation.set(initialRotation.x, initialRotation.y, 0);
+
+        // Ajustează poziția camerei în funcție de model
+        camera.position.set(center.x, center.y + 1, center.z + 5);
+        camera.lookAt(center);
 
         animate();
     });
@@ -97,7 +120,4 @@ document.addEventListener("DOMContentLoaded", function () {
             previousMouseY = event.clientY;
         }
     });
-
-    camera.position.set(0, 2, 5);
-    camera.lookAt(0, 0, 0);
 });
