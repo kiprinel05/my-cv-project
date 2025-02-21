@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Interactive CV</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+    <!-- Hero Section -->
+    <header class="hidden slide-down">
+        <div class="h1"></div>
+    </header>
+
+    <!-- About Me Section -->
+    <div class="w100 abtme">
+        <section id="about-me" class="hidden slide-up">
+            <div class="left">
+                <h2 class="hidden slide-up">About Me</h2>
+                <p id="typing-text" class="hidden slide-down">Hi! My name is Ciprian. <br>I am a passionate software
+                    developer with experience in
+                    Java, Spring
+                    Boot,
+                    and
+                    web
+                    development.</p>
+            </div>
+            <div class="right">
+                <img src="/assets/de-facut.png" alt="">
+            </div>
+        </section>
+    </div>
+    <!-- Chatbot Section -->
+    <div class="w100 chat">
+
+        <section id="chatbot" class="">
+            <h2 class="hidden slide-right">Do you want to have a chat with my bot?
+            </h2>
+            <div class="chat-w100 hidden slide-left">
+                <div id="chat-container">
+                    <div id="chat-messages"></div>
+                    <div class="chat-input-container">
+                        <input type="text" id="chat-input" placeholder="Type a message...">
+                        <button id="send-button">Send</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="skills-container">
+        <div class="card">
+            <h3>Java</h3>
+            <p>Developing scalable and robust applications using Java, with a deep understanding of object-oriented
+                programming paradigms.</p>
+        </div>
+        <div class="card">
+            <h3>Spring Boot</h3>
+            <p>Building modern and scalable Java applications with Spring Boot, providing fast and efficient solutions
+                for backend applications.</p>
+        </div>
+        <div class="card">
+            <h3>Web Development</h3>
+            <p>Developing interactive websites and web applications using modern technologies such as HTML, CSS,
+                JavaScript, and popular frameworks.</p>
+        </div>
+    </div>
+    <!-- 3D Model Section -->
+    <div class="w100model">
+        <section id="model-3d-section" class="hidden slide-right">
+            <div id="model-container"></div>
+        </section>
+        <div class="right">
+            <p>Tree.js? <br> Got you ! Check out this 3D Model.<br> Try rotating it with your mouse</p>
+        </div>
+    </div>
+
+    <!-- Tic Tac Toe Game Section -->
+    <section id="tic-tac-toe-section" class="hidden slide-left">
+        <h2>Tic Tac Toe</h2>
+        <p id="game-status" class="status-message">Your turn!</p>
+
+        <div id="game-board" class="board"></div>
+
+        <div class="controls">
+            <button id="easy-mode" class="mode-button selected">Easy Mode</button>
+            <button id="hard-mode" class="mode-button">Hard Mode</button>
+
+            <button id="restart-button" class="restart-button">Restart Game</button>
+        </div>
+    </section>
+
+
+
+
+
+    <!-- JavaScript files -->
+    <script src="js/chatbot.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/tic-tac-toe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="js/model-3d.js"></script>
+</body>
+
+</html>
