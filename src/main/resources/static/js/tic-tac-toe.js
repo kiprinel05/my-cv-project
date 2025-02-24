@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const hardModeButton = document.getElementById("hard-mode");
 
     let boardState = ["", "", "", "", "", "", "", "", ""];
-    let difficulty = "easy"; // Default mode
+    let difficulty = "easy";
 
     function createBoard() {
         gameBoard.innerHTML = "";
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
         fetch("http://localhost:8080/api/tictactoe/move", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ index, player: "X", difficulty }) // 🔥 Trimitem corect modul de dificultate
+            body: JSON.stringify({ index, player: "X", difficulty })
         })
             .then(response => response.text())
             .then(result => {
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (!result.includes("wins") && !result.includes("draw")) {
                     setTimeout(() => {
                         updateBoard();
-                    }, 500); // 👈 Delay pentru AI move
+                    }, 500);
                 }
             });
     }
@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
             hardModeButton.classList.add("selected");
         }
 
-        startGame(); // Resetăm tabla când schimbăm dificultatea
+        startGame();
     }
 
     easyModeButton.addEventListener("click", () => setDifficulty("easy"));

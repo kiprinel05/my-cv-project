@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,200..800;1,200..800&family=Lilita+One&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Sigmar&display=swap');
 
-/* General Styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -110,8 +109,21 @@ button:hover {
     transform: translateX(0);
 }
 
+.slide-up.visible {
+    transform: translateY(0);
+}
+
 #tic-tac-toe-section {
     text-align: center;
+    margin-top: 30vh;
+}
+
+#tic-tac-toe-section h2 {
+    color: black;
+    font-family: "Lilita One", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 45px;
 }
 
 .status-message {
@@ -133,12 +145,15 @@ button:hover {
     width: 100px;
     height: 100px;
     background-color: #ffffff;
-    border: 2px solid #333;
+    border: 2px solid black;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 32px;
-    font-weight: bold;
+    font-family: "Lilita One", serif;
+    font-size: 30px;
+    font-weight: normal;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
@@ -167,7 +182,7 @@ button:hover {
 }
 
 .mode-button.selected {
-    background-color: #ff9800;
+    background-color: #0084ff;
     color: white;
 }
 
@@ -188,15 +203,13 @@ button:hover {
 }
 
 .restart-button:hover {
-    background-color: #cc0000;
-    color: black;
+    background-color: #ff0000;
+    color: white;
 }
 
 #model-container {
     width: 100%;
-    /* Se mulează pe dimensiunea părintelui */
     height: 500px;
-    /* Dimensiune mai rezonabilă */
     border-radius: 10px;
     background-color: transparent;
     cursor: grab;
@@ -304,7 +317,7 @@ button:hover {
 }
 
 #about-me {
-    height: 800px;
+    height: 1000px;
     display: flex;
     justify-content: space-around;
     gap: 30px;
@@ -355,7 +368,6 @@ h2 {
 .w100.abtme {
     /* border: 1px solid red; */
     background-color: #0b0b0b;
-    /* Adaugă un shadow în jos */
 }
 
 .w100.chat {
@@ -364,7 +376,6 @@ h2 {
     flex-direction: column;
     justify-content: center;
     /* border: 1px solid red; */
-    /* background: url('/assets/chatbox-down.png'); */
     background-size: cover;
 
 }
@@ -379,8 +390,6 @@ h2 {
     position: relative;
     overflow: hidden;
     /* border: 1px solid red; */
-    /* background: url('/assets/chatbox-down.png'); */
-    /* background-size: cover; */
 
 }
 
@@ -400,26 +409,21 @@ h2 {
 
 #typing-text {
     display: inline-block;
-    white-space: normal;
-    /* Permite trecerea pe linie nouă */
+    white-space: pre-wrap;
     overflow: hidden;
     width: 100%;
-    /* Ajustează lățimea maximă */
-    word-wrap: break-word;
-    /* Se asigură că textul rămâne în container */
+    max-width: 100%;
     position: relative;
-    /* Necesar pentru cursorul `::after` */
+    word-break: break-word;
 }
 
 #typing-text::after {
     content: "|";
-    /* Cursorul */
     font-weight: bold;
     color: white;
     display: inline-block;
-    width: 10px;
     animation: blink 0.6s infinite;
-    position: absolute;
+    margin-left: 2px;
 }
 
 @keyframes blink {
@@ -427,6 +431,7 @@ h2 {
         opacity: 0;
     }
 }
+
 
 
 @keyframes typing {
@@ -439,12 +444,6 @@ h2 {
     }
 }
 
-@keyframes blink {
-    50% {
-        border-color: transparent;
-    }
-}
-
 .w100model {
     /* border: 1px solid red; */
     display: flex;
@@ -453,14 +452,12 @@ h2 {
     padding: 20px;
     flex-wrap: wrap;
     margin-top: 20vh;
-    /* previne probleme la ecrane mai mici */
 }
 
 
 .w100model.right {
     width: 40%;
     max-width: 400px;
-    /* Evită extinderea pe ecrane mari */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -472,9 +469,7 @@ h2 {
 
 #model-3d-section {
     width: 50%;
-    /* Asigură o împărțire mai echilibrată */
     max-width: 600px;
-    /* Evită extinderea excesivă */
     display: flex;
     justify-content: center;
 }
@@ -514,7 +509,6 @@ h2 {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     border-radius: 15px;
     width: 15%;
-    /* Cardurile vor avea dimensiuni egale */
     padding: 30px;
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -527,7 +521,6 @@ h2 {
     margin-bottom: 20px;
     color: #fff;
     background-color: #4a90e2;
-    /* albastru deschis pentru titlu */
     padding: 15px;
     border-radius: 8px;
     text-transform: uppercase;
@@ -548,7 +541,6 @@ h2 {
 .card:hover {
     transform: translateY(-10px);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-    /* efect mai puternic la hover */
 }
 
 
@@ -561,36 +553,6 @@ h2 {
 }
 
 
-@media (max-width: 768px) {
-    .w100.abtme {
-        width: 100%;
-    }
-
-    .right {
-        width: 20px;
-        height: 20px;
-    }
-
-    .skills-container {
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-    }
-
-    .card {
-        width: 80%;
-        height: 20%;
-        /* Carduri mai largi pe mobil */
-        padding: 20px;
-    }
-
-    .card h3 {
-        font-size: 20px;
-    }
-}
-
-
-/* Poziționăm formele în afara ecranului */
 .shape {
     position: absolute;
     width: 200px;
@@ -620,4 +582,151 @@ h2 {
     right: -250px;
     top: 60%;
     transform: translateY(-50%) scale(2) rotate(0deg);
+}
+
+
+@media (max-width: 768px) {
+    .w100.abtme {
+        width: 100%;
+    }
+
+    .right {
+        width: 20px;
+        height: 20px;
+    }
+
+    .skills-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .card {
+        width: 80%;
+        height: 20%;
+        padding: 20px;
+    }
+
+    .card h3 {
+        font-size: 20px;
+    }
+}
+
+
+
+/**/
+
+
+@media (max-width: 768px) {
+    .board {
+        grid-template-columns: repeat(3, 80px);
+        grid-template-rows: repeat(3, 80px);
+    }
+
+    .cell {
+        width: 80px;
+        height: 80px;
+        font-size: 24px;
+    }
+
+    #chat-container {
+        width: 90%;
+        max-width: 400px;
+    }
+
+    #about-me {
+        flex-direction: column;
+        height: auto;
+        padding: 20px;
+        text-align: center;
+    }
+
+    #about-me h2 {
+        font-size: 50px;
+    }
+
+    #about-me p {
+        font-size: 20px;
+    }
+
+    .skills-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .w100.abtme {
+        height: 1000px;
+    }
+
+    #about-me {
+        height: 1000px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .left {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #about-me img {
+        position: absolute;
+        transform: translate(-50%, -50%) scale(.4);
+        display: none;
+    }
+
+    .shape-1,
+    .shape-2 {
+        position: absolute;
+        transition: transform 0.3s ease-out, left 0.3s ease-out, right 0.3s ease-out;
+        will-change: transform;
+    }
+
+    .card {
+        width: 80%;
+    }
+}
+
+@media (max-width: 480px) {
+    .board {
+        grid-template-columns: repeat(3, 60px);
+        grid-template-rows: repeat(3, 60px);
+    }
+
+    .cell {
+        width: 60px;
+        height: 60px;
+        font-size: 20px;
+    }
+
+    #about-me h2 {
+        font-size: 40px;
+    }
+
+    #about-me p {
+        font-size: 18px;
+    }
+
+    .card {
+        width: 80%;
+        height: 120%;
+    }
+
+    .main-skills {
+        height: 100%;
+        display: flex;
+    }
+
+    .skills-container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 100px;
+    }
 }

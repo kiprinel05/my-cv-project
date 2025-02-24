@@ -17,37 +17,41 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // type text
 
-    const text = "Hi! My name is Ciprian. I am a passionate software developer with experience in Java, Spring Boot, and web development.";
+    const text = `Hi! My name is Ciprian.
+    I am a passionate software developer with experience in
+    Java, Spring Boot, and web development.`; // Folosim newlines (\n) pentru a menține formatarea
+
     const typingElement = document.getElementById("typing-text");
     let index = 0;
     let isDeleting = false;
 
     function typeEffect() {
-        if (!isDeleting) {
-            typingElement.innerHTML = text.substring(0, index);
-            index++;
+        let displayText = text.substring(0, index);
+        typingElement.textContent = displayText; // Folosim textContent pentru a păstra formatarea
 
+        if (!isDeleting) {
+            index++;
             if (index > text.length) {
                 isDeleting = true;
-                setTimeout(typeEffect, 3000); // Așteaptă 3 secunde înainte de ștergere
+                setTimeout(typeEffect, 3000);
                 return;
             }
         } else {
-            typingElement.innerHTML = text.substring(0, index);
             index--;
-
             if (index < 0) {
                 isDeleting = false;
-                setTimeout(typeEffect, 2000); // Așteaptă 2 secunde înainte de reîncepere
+                setTimeout(typeEffect, 2000);
                 return;
             }
         }
 
-        setTimeout(typeEffect, isDeleting ? 30 : 50); // Viteza scrierii/ștergerii
+        setTimeout(typeEffect, isDeleting ? 30 : 50);
     }
 
-    typingElement.innerHTML = ""; // Curăță textul inițial
     typeEffect();
+
+
+    // SHAPES
 
     const shape1 = document.querySelector(".shape-1");
     const shape2 = document.querySelector(".shape-2");
@@ -61,30 +65,31 @@ document.addEventListener("DOMContentLoaded", function () {
     function updateShapesOnScroll() {
         const rect = chatbotSection.getBoundingClientRect();
         const viewportHeight = window.innerHeight;
+        const isMobile = window.innerWidth <= 768; // Verificăm dacă ecranul este mai mic sau egal cu 768px
 
         if (rect.top < viewportHeight && rect.bottom > 0) {
-            let progress = 1 - rect.top / viewportHeight;
-            let rotation = progress * 180; // Rotire continuă
+            let progress = 1 - rect.top / viewportHeight; // Progresul apariției în viewport
+            let rotation = progress * 360; // Rotație mai mare, până la 360°
 
-            let maxOffset = 15; // Formele vin mai aproape de centru
-
-            // Dacă progresul este sub limită, apropiem formele
+            let maxOffset = isMobile ? 50 : 70; // Pe mobil, mutăm formele mai mult lateral
+            let scale = isMobile ? 1.5 : 2;
             let offset = Math.min(progress * maxOffset, maxOffset);
 
             setTimeout(() => {
                 shape1.style.left = `${offset}%`;
-                shape1.style.transform = `translateY(-50%) scale(2) rotate(${rotation}deg)`;
+                shape1.style.transform = `translateY(-50%) scale(${scale}) rotate(${rotation}deg)`;
                 shape1.style.opacity = "1";
-            }, 0); // Delay de 0.5s
+            }, 0);
 
             setTimeout(() => {
                 shape2.style.right = `${offset}%`;
-                shape2.style.transform = `translateY(-50%) scale(2) rotate(${-rotation}deg)`;
+                shape2.style.transform = `translateY(-50%) scale(${scale}) rotate(${-rotation}deg)`;
                 shape2.style.opacity = "1";
-            }, 0); // Delay puțin mai mare pentru efect mai cool
+            }, 0);
         }
     }
 
     window.addEventListener("scroll", updateShapesOnScroll);
     updateShapesOnScroll();
+
 });

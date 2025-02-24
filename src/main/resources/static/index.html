@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Interactive CV</title>
+    <title>insta - cipriann05</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/x-icon" href="/assets/logo.png">
 </head>
 
 <body>
@@ -19,7 +20,7 @@
     <div class="w100 abtme">
         <section id="about-me" class="hidden slide-up">
             <div class="left">
-                <h2 class="hidden slide-up">About Me</h2>
+                <h2 class="hidden slide-down">About Me</h2>
                 <p id="typing-text" class="hidden slide-down">Hi! My name is Ciprian. <br>I am a passionate software
                     developer with experience in
                     Java, Spring
@@ -29,7 +30,7 @@
                     development.</p>
             </div>
             <div class="right">
-                <img src="/assets/de-facut.png" alt="">
+                <img src="/assets/logo.png" alt="">
             </div>
         </section>
     </div>
@@ -84,16 +85,14 @@
     </div>
 
     <!-- Tic Tac Toe Game Section -->
-    <section id="tic-tac-toe-section" class="hidden slide-left">
-        <h2>Tic Tac Toe</h2>
+    <section id="tic-tac-toe-section" class="">
+        <h2 style="color: black;" class="hidden slide-down">Wanna play a game? Check it out and play vs my AI</h2>
         <p id="game-status" class="status-message">Your turn!</p>
 
-        <div id="game-board" class="board"></div>
-
-        <div class="controls">
+        <div id="game-board" class="board hidden slide-up"></div>
+        <div class="controls hidden slide-up">
             <button id="easy-mode" class="mode-button selected">Easy Mode</button>
             <button id="hard-mode" class="mode-button">Hard Mode</button>
-
             <button id="restart-button" class="restart-button">Restart Game</button>
         </div>
     </section>
