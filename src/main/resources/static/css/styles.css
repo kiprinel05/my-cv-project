@@ -231,7 +231,7 @@ button:hover {
     flex-direction: column;
     gap: 10px;
     padding: 10px;
-    background: #f9f9f9;
+    /* background: #f9f9f9; */
     border-radius: 10px;
     font-family: "Roboto Mono", serif;
     font-optical-sizing: auto;
@@ -239,7 +239,7 @@ button:hover {
 }
 
 .bot-message {
-    background: #e0e0e0;
+    background: #eeeeee;
     padding: 10px 15px;
     border-radius: 10px;
     align-self: flex-start;
@@ -364,7 +364,7 @@ h2 {
     flex-direction: column;
     justify-content: center;
     /* border: 1px solid red; */
-    background: url('/assets/chatbox-down.png');
+    /* background: url('/assets/chatbox-down.png'); */
     background-size: cover;
 
 }
@@ -376,6 +376,8 @@ h2 {
     align-items: center;
     gap: 20px;
     justify-content: center;
+    position: relative;
+    overflow: hidden;
     /* border: 1px solid red; */
     /* background: url('/assets/chatbox-down.png'); */
     /* background-size: cover; */
@@ -389,6 +391,7 @@ h2 {
     font-style: normal;
     font-size: 55px;
     margin-top: 90px;
+    position: relative;
 }
 
 .chat-w100 {
@@ -521,7 +524,6 @@ h2 {
 }
 
 .card h3 {
-    font-size: 1.7rem;
     margin-bottom: 20px;
     color: #fff;
     background-color: #4a90e2;
@@ -529,7 +531,11 @@ h2 {
     padding: 15px;
     border-radius: 8px;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
+    font-family: "Sigmar", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 30px;
 }
 
 .card p {
@@ -545,7 +551,26 @@ h2 {
     /* efect mai puternic la hover */
 }
 
+
+.right p {
+    color: black;
+    font-family: "Lilita One", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 45px;
+}
+
+
 @media (max-width: 768px) {
+    .w100.abtme {
+        width: 100%;
+    }
+
+    .right {
+        width: 20px;
+        height: 20px;
+    }
+
     .skills-container {
         flex-direction: column;
         align-items: center;
@@ -554,15 +579,45 @@ h2 {
 
     .card {
         width: 80%;
+        height: 20%;
         /* Carduri mai largi pe mobil */
         padding: 20px;
     }
+
+    .card h3 {
+        font-size: 20px;
+    }
 }
 
-.right p {
-    color: black;
-    font-family: "Lilita One", serif;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 45px;
+
+/* Poziționăm formele în afara ecranului */
+.shape {
+    position: absolute;
+    width: 200px;
+    /* Mai mari */
+    height: 200px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition: transform 0.7s ease-out, left 0.7s ease-out, right 0.7s ease-out, opacity 0.7s ease-out;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0;
+    /* Invizibile inițial */
+    transform: scale(2) rotate(0deg);
+}
+
+/* Forma din stânga */
+.shape-1 {
+    background-image: url('/assets/shape-1.png');
+    left: -250px;
+    top: 60%;
+    transform: translateY(-50%) scale(2) rotate(0deg);
+}
+
+/* Forma din dreapta */
+.shape-2 {
+    background-image: url('/assets/shape-2.png');
+    right: -250px;
+    top: 60%;
+    transform: translateY(-50%) scale(2) rotate(0deg);
 }

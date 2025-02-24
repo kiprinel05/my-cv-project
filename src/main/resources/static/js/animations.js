@@ -48,4 +48,43 @@ document.addEventListener("DOMContentLoaded", function () {
 
     typingElement.innerHTML = ""; // Curăță textul inițial
     typeEffect();
+
+    const shape1 = document.querySelector(".shape-1");
+    const shape2 = document.querySelector(".shape-2");
+    const chatbotSection = document.querySelector("#chatbot");
+
+    if (!shape1 || !shape2 || !chatbotSection) {
+        console.error("Nu s-au găsit elementele necesare!");
+        return;
+    }
+
+    function updateShapesOnScroll() {
+        const rect = chatbotSection.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
+
+        if (rect.top < viewportHeight && rect.bottom > 0) {
+            let progress = 1 - rect.top / viewportHeight;
+            let rotation = progress * 180; // Rotire continuă
+
+            let maxOffset = 15; // Formele vin mai aproape de centru
+
+            // Dacă progresul este sub limită, apropiem formele
+            let offset = Math.min(progress * maxOffset, maxOffset);
+
+            setTimeout(() => {
+                shape1.style.left = `${offset}%`;
+                shape1.style.transform = `translateY(-50%) scale(2) rotate(${rotation}deg)`;
+                shape1.style.opacity = "1";
+            }, 0); // Delay de 0.5s
+
+            setTimeout(() => {
+                shape2.style.right = `${offset}%`;
+                shape2.style.transform = `translateY(-50%) scale(2) rotate(${-rotation}deg)`;
+                shape2.style.opacity = "1";
+            }, 0); // Delay puțin mai mare pentru efect mai cool
+        }
+    }
+
+    window.addEventListener("scroll", updateShapesOnScroll);
+    updateShapesOnScroll();
 });
