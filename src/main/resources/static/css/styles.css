@@ -690,6 +690,9 @@ h2 {
     .card {
         width: 80%;
     }
+    .card{
+        flex-direction: column;
+    }
 }
 
 @media (max-width: 480px) {
